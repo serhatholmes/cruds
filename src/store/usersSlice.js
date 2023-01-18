@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { UsersData } from "../FakeData";
+import UsersData from "../assets/data/peopleData.json";
 
 export const userSlice = createSlice({
   name: "users",
@@ -13,7 +13,6 @@ export const userSlice = createSlice({
     deleteUser: (state, action) => {
       state.value = state.value.filter((user) => user.id !== action.payload.id);
     },
-
     updateUsername: (state, action) => {
       state.value.map((user) => {
         if (user.id === action.payload.id) {
