@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { addUser } from "./store/usersSlice";
 
-import { addUser } from "./features/Users";
-import Seperate from "./features/Seperate";
-import Header from "./features/Header";
+import Header from "./component/Header";
+import UserCardList from "./component/UserCardList";
+import Button from "./component/Button";
 
 function App() {
   const dispatch = useDispatch();
@@ -11,13 +12,13 @@ function App() {
 
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
-  console.log(name);
+
   return (
     <div className="max-w-xl mx-auto rounded-lg shadow-black">
       <Header />
       <div className="flex flex-col justify-center">
         <input
-          className="bg-slate-200 text-left placeholder-stone-600 p-2 rounded-t-lg"
+          className="bg-slate-200 text-left placeholder-stone-600 px-4 py-2 rounded-t-lg"
           type="text"
           placeholder="Name..."
           onChange={(event) => {
@@ -32,8 +33,8 @@ function App() {
             setUsername(event.target.value);
           }}
         />
-        <button
-          className="bg-slate-600 text-white rounded-b-lg shadow-black font-semibold"
+        <Button
+          className="bg-slate-600 text-white  font-semibold rounded-b-lg"
           onClick={() => {
             dispatch(
               addUser({
@@ -43,12 +44,10 @@ function App() {
               })
             );
           }}
-        >
-          Add User
-        </button>
+          label="Add User"
+        />
       </div>
-
-      <Seperate userList={userList} />
+      <UserCardList userList={userList} />
     </div>
   );
 }
